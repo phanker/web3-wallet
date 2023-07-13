@@ -3,7 +3,7 @@ import { ref } from "vue";
 import * as bip39 from "bip39";
 import etherWallet, { hdkey } from "ethereumjs-wallet";
 import Web3 from "web3";
-
+import {useRouter} from "vue-router"
 import { showDialog } from "vant";
 import store2 from "store2";
 
@@ -11,6 +11,7 @@ import store2 from "store2";
 const getMnemonic = () => {
   return bip39.generateMnemonic();
 };
+  const router = useRouter()
 
 //the function to generate a wallet by a Mnemonic
 const getWallet = async (mnemonic, deriveNum, walletPassword) => {
@@ -70,6 +71,7 @@ const verifyConfirmDialog = () => {
       message: "The Mnemonic you typed is wrong.",
     }).then(() => {
       // on close
+    router.push('/info')
     });
   }
 };
@@ -102,7 +104,7 @@ const submit = async (values) => {
   store2.add("currentAccount", wallet.address);
   show.value = false;
   diagramShow.value = true;
-
+  
   cunrrentMnemonic.value = mnemonic;
 
   // store derived number and wallet in local.

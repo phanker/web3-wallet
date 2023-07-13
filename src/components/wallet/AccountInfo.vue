@@ -6,7 +6,8 @@ import Web3 from "web3";
 import Tx from "ethereumjs-tx";
 
 // the accounts from the parent module
-const props = defineProps(["wallet-info"]);
+// const props = defineProps(["wallet-info"]);
+const walletInfo = store2.has("walletInfo") ? store2.get("walletInfo") : [];
 const currentAccount = ref();
 //current account info
 currentAccount.value = store2.get("currentAccount");
@@ -37,7 +38,7 @@ const accountInfos = {};
 
 const initData = computed(() => {
   let accounts = [];
-  props.walletInfo.forEach(async (element) => {
+  walletInfo.forEach(async (element) => {
     const newEle = {};
     newEle.name = element.address;
 
