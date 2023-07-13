@@ -3,7 +3,6 @@ import RegirstButtonVue from "./components/wallet/RegirstButton.vue";
 import AccountInfoVue from "./components/wallet/AccountInfo.vue";
 import store2 from "store2";
 import { onMounted, ref } from "vue";
-
 const walletInfo = ref([]);
 onMounted(() => {
   walletInfo.value = store2.has("walletInfo") ? store2.get("walletInfo") : [];
